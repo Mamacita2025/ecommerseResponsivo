@@ -9,7 +9,7 @@ import {ObjectId} from 'mongodb'
 import { text } from 'stream/consumers'
 import { error } from 'console'
 
-const collectionName = 'user'
+const collectionName = 'users'
 
 passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, callback) => {
     const user = await Mongo.db
@@ -40,6 +40,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, passwor
 
 const authRouter = express.Router()
 
+// Registrando os usuarios ou Criando usuario
 authRouter.post('/signup', async (req, res) => {
     const checkUser = await Mongo.db
     .collection(collectionName)
@@ -113,7 +114,7 @@ authRouter.post('/login', (req, res) => {
                 success: false,
                 statuscode: 400,
                 body:{
-                    text: 'User not found'
+                    text: 'credencias erradas!'
                 }
             })
         }

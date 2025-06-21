@@ -1,0 +1,87 @@
+[
+    {
+        "name": "Squid Step with Peas",
+        "price": "2000.34kz",
+        "available": false,
+        "description": "Fresh squid slowly cooked in a stew with fresh peas and tomatoes revel an explosion of delicious",
+        "ingredients": [
+            "Fresh squid",
+            "Fresh peas",
+            "Tomatoes"
+        ],
+        "category": "First"
+    },
+    {
+        "name": "Tortellini in Chicken Broth",
+        "price": "3245.53kz",
+        "available": true,
+        "description": "Our homemade torterllini, filled with meat, float in a warn chicken broth",
+        "ingredients": [
+            "Homemadle tortellini",
+            "Chiken Broth"
+        ],
+        "category": "First"
+    },
+    {
+        "name": "Shrimp and vegetable Saled",
+        "price": "1342.54kz",
+        "available": true,
+        "description": "A fresh salad with cooked, seasonal vegetable, and a secret igredient dressing",
+        "ingredients": [
+            "Cooked shrimp",
+            "Seasonal vegetables",
+            "Salad dressing"
+        ],
+        "category": "Side"
+    },
+    {
+        "name": "Whole Grain Bread",
+        "price": "3764.21kz",
+        "available": true,
+        "description": "Freshly baked whole grain bread, crispy on the outside and soft on the inside, perfect plates for you",
+        "ingredients": [
+            "Water",
+            "Whole grain flour",
+            "Yeast",
+            "Salt"
+        ],
+        "category": "Other"
+    },
+    {
+        "name": "Meatballs in a Tomato Sauce",
+        "price": "3643.65kz",
+        "available": true,
+        "description": "Soft ground meatballs, immersed in a tomato and basil sauce, will make you say 'Mammacite gouther'",
+        "ingredients": [
+            "Tomato sauce",
+            "Ground meat",
+            "Basil",
+            "Buffer"
+        ],
+        "category": "Second"
+    },
+    {
+        "name": "Smoked Swordfish with Seared vegetables",
+        "price": "4200.74kz",
+        "available": true,
+        "description": "Smoked Swordfish with Seared Vegetables and sesame seeds, a delightful combination of delering",
+        "ingredients": [
+            "Smoked swordfish",
+            "Seared vegetables",
+            "Sesame seeds"
+        ],
+        "category": "Appetizer"
+    },
+    {
+        "name": "Layers of egg pasta interprise",
+        "price": "7670.94kz",
+        "available": true,
+        "description": "Layers of egg pasta interprise with a rich minced meat sauce and a fluttfy bechamel source pastes",
+        "ingredients": [
+            "rich minced meat",
+            "bechamel source paste",
+            "interprises"
+        ],
+        "category": "First"
+    }
+]
