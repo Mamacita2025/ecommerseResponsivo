@@ -6,6 +6,7 @@ import mongoose from 'mongoose'
 import authRouter from './auth/auth.js'
 import usersRouter from './routes/users.js'
 import platesRouter from './routes/plates.js'
+import ordersRouter from './routes/orders.js'
 
 config()
 async function main() {
@@ -37,6 +38,10 @@ async function main() {
     app.use('/auth', authRouter)
     app.use('/users', usersRouter)
     app.use('/plates', platesRouter)
+    app.use('/orders', ordersRouter)
+
+
+
     app.listen(port, () => {
         console.log(`Servidor rodando na porta: http://${hostName}:${port}`)
     })
