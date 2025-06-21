@@ -35,6 +35,7 @@ export default class OrderDataAcess {
                         'userDetails.salt': 0,
                     }
                 },
+                // Pegando dados pedidos dos Usuarios 
                 {
                     $unwind: '$orderItems'
                 },
@@ -44,6 +45,75 @@ export default class OrderDataAcess {
                         localField: 'orderItems.plateId',
                         foreignField: '_id',
                         as: 'orderItems.itemDetails'
+                    }
+                },
+                {
+                    $group: {
+                        _id: '$_id',
+                        userDetails: {$first: '$userDetails'},
+                        orderItems: {$push: '$orderItems'},
+                        pickupStatus: {$first: '$pickupStatus'},
+                        pickupTime: {$first: '$pickupTime'},
+                    }
+                }
+            ])
+            .toArray()
+
+        return result
+    }
+
+        async getOrdersByUserId(userId) {
+        const result = await Mongo.db
+            .collection(collectionName)
+            .aggregate([
+                {
+                    $match: {userId: new ObjectId(userId)}
+                },
+
+                // order feito 
+                {
+                    $lookup:{
+                        from: 'orderItems',
+                        localField: '_id',
+                        foreignField: 'orderId',
+                        as: 'orderItems'
+                    }
+                },
+                // Quem fez o order?
+                {
+                    $lookup:{
+                        from: 'users',
+                        localField: 'userId',
+                        foreignField: '_id',
+                        as: 'userDetails'
+                    }
+                },
+                // Ocultando dados senciveis 
+                {
+                    $project: {
+                        'userDetails.password': 0,
+                        'userDetails.salt': 0,
+                    }
+                },
+                // Pegando dados pedidos dos Usuarios 
+                {
+                    $unwind: '$orderItems'
+                },
+                {
+                    $lookup: {
+                        from: 'plates',
+                        localField: 'orderItems.plateId',
+                        foreignField: '_id',
+                        as: 'orderItems.itemDetails'
+                    }
+                },
+                {
+                    $group: {
+                        _id: '$_id',
+                        userDetails: {$first: '$userDetails'},
+                        orderItems: {$push: '$orderItems'},
+                        pickupStatus: {$first: '$pickupStatus'},
+                        pickupTime: {$first: '$pickupTime'},
                     }
                 }
             ])
@@ -84,9 +154,19 @@ export default class OrderDataAcess {
 
     // Eliminado order 
     async deleteOrder(orderId) {
-        const result = await Mongo.db
+
+        const itemsToDelete = await Mongo.db
+        .collection(collectionName)
+        .deleteMany({orderId: new ObjectId(orderId)})
+
+        const orderToDelete = await Mongo.db
             .collection(collectionName)
             .findOneAndDelete({ _id: new ObjectId(orderId) })
+
+        const result = {
+            itemsToDelete,
+            orderToDelete
+        }
 
         return result
     }

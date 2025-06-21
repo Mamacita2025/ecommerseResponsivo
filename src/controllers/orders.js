@@ -7,10 +7,19 @@ export default class OrdersControllers {
         this.dataAccess = new OrderDataAcess()
     }
 
-    // Pegando Produtos
+    // Pegando Orders
     async getOrders(){
         try {
             const orders = await this.dataAccess.getOrder()
+            return ok(orders)
+        } catch (error) {
+            return serverError(error)
+        }
+    }
+
+        async getOrdersByUserId(userId){
+        try {
+            const orders = await this.dataAccess.getOrdersByUserId(userId)
             return ok(orders)
         } catch (error) {
             return serverError(error)
@@ -26,7 +35,7 @@ export default class OrdersControllers {
         }
     }
 
-    // Deletando Produtos
+    // Deletando Orders
     async deleteOrder(orderId){
         try {
             const result = await this.dataAccess.deleteOrder(orderId)

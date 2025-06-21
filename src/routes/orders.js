@@ -5,26 +5,32 @@ const ordersRouter = express.Router()
 
 const ordersControllers = new OrdersControllers()
 
-// Pegando os Produtos
+// Pegando os Order
 ordersRouter.get('/', async (req, res) => {
     const { success, statusCode, body } = await ordersControllers.getOrders()
 
     res.status(statusCode).send({success, statusCode, body})
 })
 
-// Inserindo produtos
+ordersRouter.get('/:id', async (req, res) => {
+    const { success, statusCode, body } = await ordersControllers.getOrdersByUserId(req.params.id)
+
+    res.status(statusCode).send({success, statusCode, body})
+})
+
+// Inserindo order
 ordersRouter.post('/', async (req, res) => {
     const { success, statusCode, body } = await ordersControllers.addOrder(req.body)
     res.status(statusCode).send({success, statusCode, body})
 })
 
-// Deletando um Produtos
+// Deletando um Order
 ordersRouter.delete('/:id', async (req, res) => {
     const { success, statusCode, body } = await ordersControllers.deleteOrder(req.params.id)
     res.status(statusCode).send({success, statusCode, body})
 })
 
-// Atualizando um Produtos
+// Atualizando um Order
 ordersRouter.put('/:id', async (req, res) => {
     const { success, statusCode, body } = await ordersControllers.updateOrder(req.params.id, req.body)
     res.status(statusCode).send({success, statusCode, body})
